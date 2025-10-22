@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                echo "Fetching code from GitHub..."
+                git branch: 'main', url: 'https://github.com/vishwa2311/pipeline-scm.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "This is the build stage. You can compile or run tests here."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "This is the deploy stage. Example completed successfully!"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
+    }
+}
